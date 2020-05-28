@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,18 +12,28 @@
         <div id="wrapper" class="row">
             <div class="col-3 bg-secondary"><p><span class="nav-link bg-dark text-secondary">Anotações</span>
             <ul class="nav nav-pills flex-column">
-                <Li class="nav-item"><a href = "" class='nav-link text-white'>1</a></Li>
-                <Li class="nav-item"><a href = "" class='nav-link text-white'>2</a></Li>
-                <Li class="nav-item"><a href = "" class='nav-link text-white'>3</a></Li>
+                <Li class="nav-item"><a href = "" class='nav-link bg-success text-white' @click.prevent="create()">Nova anotação</a></Li>
+                <Li class="nav-item" v-for="note, index in notes">
+                    <a href = "" class='nav-link text-white' @click.prevent ='select(index)'>{{note.content}}</a>
+                </Li>
+                
             </ul>
             
             </div>
             <div class="col">
-                <textarea>Anotações</textarea>
+                <textarea @keyup="save()" ref="textarea" 
+                placeholder="Insira sua anotação">{{ (active !== null) ? notes[active].content : ''}}</textarea>   
             </div>
         </div>
         <div id="footer" class='bg-info'>
             <strong>Dica:</strong> Apague o conteúdo para excluir uma anotação  </div>
     </div>
+    
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <script src="../node_modules/lodash/lodash.js"></script>
+    <script src="app.js"></script>
+    
+    
+    
 </body>
 </html>
